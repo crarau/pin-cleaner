@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pin Cleaner Library</title>
+<link rel="stylesheet" href="src/library.css">
+</head>
+<body>
+<aside>
+  <h1>Library</h1>
+  <nav id="folders"></nav>
+  <button id="new-folder" class="ghost">New folder</button>
+</aside>
+<main>
+  <div class="bar">
+    <div class="title"><h2 id="folder-title">All picks</h2><span id="folder-actions"></span></div>
+    <div class="actions">
+      <label class="all"><input type="checkbox" id="select-all"> Select all</label>
+      <button id="export-jpg" class="ghost">Download JPGs</button>
+      <button id="export-zip" class="primary">Download ZIP</button>
+    </div>
+  </div>
+  <p id="status" class="status"></p>
+  <div id="grid" class="grid"></div>
+  <p id="empty" class="empty" hidden>No picks here yet. On Pinterest, hover a pin and press + to pick it.</p>
+</main>
+<script src="src/pindata.js"></script>
+<script src="src/zip.js"></script>
+<script src="src/library.js"></script>
+</body>
+</html>
