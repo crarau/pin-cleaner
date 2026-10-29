@@ -4,7 +4,7 @@ A Chrome extension that cleans up Pinterest and turns it into a moodboard tool.
 
 - **Hide ads, video and AI-generated images** with one click each.
 - **Filter any Pinterest page by color and shape** (portrait, square, landscape), including search results, boards and the "more like this" grid under a pin.
-- **Pick any image** with the + button on each pin, even one your filters would hide.
+- **Pick any image** with the **+ Pick** button under each pin, even one your filters would hide.
 - **Organize picks into folders.**
 - **Export in full resolution**, as separate JPGs or one ZIP per folder.
 
@@ -29,7 +29,7 @@ To update later, download the new zip, replace the folder's contents, and press 
 
 - **Panel:** click **Pin Cleaner** in the bottom right corner of Pinterest. Tick what to hide, pick one or more colors, pick one or more shapes. Ads are hidden by default.
 - **When you change a filter**, pins already on screen are hidden in place. Refresh the page (the panel offers a button) and the grid is rebuilt without gaps.
-- **Picking:** hover any pin and press the **+** in its top left corner. It turns red and the pin stays visible whatever your filters say. Press it again to un-pick.
+- **Picking:** every pin has a **+ Pick** button under it. Press it to save the image to your library: the button turns red and reads **✓ Picked**, and the pin stays visible whatever your filters say. Press it again to remove it.
 - **Folders:** in the panel, "Picks go to" chooses the folder for new picks. **New** creates one.
 - **Library:** **Open library** in the panel, or the Pin Cleaner icon in the toolbar. Move picks between folders, rename or delete folders, remove picks.
 - **Export:** in the library, **Download ZIP** saves the folder you are looking at as one zip (or only the ticked images). **Download JPGs** saves each image separately. Both download the original full-size image and convert it to JPG when Pinterest stores it in another format. Files land in your Downloads folder under **Pin Cleaner**.
@@ -57,6 +57,17 @@ Pinterest's grid is a virtualized masonry: about 20 pins are mounted at a time, 
 - `src/library.js` is the library page. It fetches originals from `i.pinimg.com` (the only host permission) and writes ZIPs with `src/zip.js`.
 
 `src/pindata.main.js` is a build copy of `src/pindata.js` for the page world (Chrome injects a file listed in two content script entries only once). `npm run build` refreshes it and a unit test fails if they drift.
+
+## Publish to the Chrome Web Store
+
+Store item `pjnldnkophmedfilcbpoeniioiccomah`, publisher IdeaPlaces. Bump `version` in `extension/manifest.json`, then:
+
+```bash
+./tools/publish.sh            # build, upload, submit for review (publishes automatically once approved)
+./tools/publish.sh status     # where the current submission stands
+```
+
+It authenticates as `chrome-web-store-publisher@ideaplaces.iam.gserviceaccount.com`, a keyless service account impersonated through the IdeaPlaces ops account (`gcloud --configuration=ideaplaces-ops`). Defined in Terraform: `ideaplaces-devops/google-cloud/chrome-web-store/main.tf`.
 
 ## Develop
 

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Pin Cleaner",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Hide ads, video and AI images on Pinterest, filter by color and shape, pick images into folders and export them in full resolution.",
   "icons": {
     "16": "icons/16.png",

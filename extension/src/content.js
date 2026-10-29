@@ -97,15 +97,16 @@
     await chrome.storage.local.set({ picks: all });
   }
 
+  // The pick button lives in the row under the pin, left of Pinterest's "..." menu: that space is
+  // empty on organic pins, and the image itself is covered by Pinterest's own hover buttons.
+  // Absolutely positioned so the pin's height, which Pinterest has already laid out, never changes.
   function ensurePickButton(item) {
     if (item.querySelector(':scope .pc-pick')) return;
     const b = document.createElement('button');
     b.className = 'pc-pick';
     b.type = 'button';
-    b.title = 'Pick this image';
-    b.textContent = '+';
     b.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); togglePick(item); }, true);
-    const host = item.querySelector('[data-test-id="pinWrapper"]') || item;
+    const host = item.querySelector('[data-test-id="pinrep-footer"]') || item.querySelector('[data-test-id="pinWrapper"]') || item;
     host.style.position = host.style.position || 'relative';
     host.appendChild(b);
   }
@@ -129,8 +130,13 @@
       item.classList.toggle('pc-picked', picked);
       if (p.id) ensurePickButton(item);
       const btn = item.querySelector('.pc-pick');
-      const mark = picked ? '✓' : '+';
-      if (btn && btn.textContent !== mark) btn.textContent = mark;
+      const mark = picked ? '✓ Picked' : '+ Pick';
+      if (btn && btn.textContent !== mark) {
+        btn.textContent = mark;
+        btn.title = picked
+          ? `In your Pin Cleaner library, folder ${picks[p.id].folder}. Click to remove it.`
+          : 'Save this image to your Pin Cleaner library. Picked images always stay visible, whatever your filters.';
+      }
     }
     renderPanel(domHidden);
   }
