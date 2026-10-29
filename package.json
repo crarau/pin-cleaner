@@ -1,0 +1,17 @@
+{
+  "name": "pin-cleaner",
+  "version": "1.0.0",
+  "description": "Chrome extension: clean and curate Pinterest",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "test:e2e": "node test/e2e.mjs",
+    "package": "npm run build && rm -rf build pin-cleaner.zip && mkdir -p build/pin-cleaner && cp -R extension/ build/pin-cleaner/ && cd build && zip -qr ../pin-cleaner.zip pin-cleaner -x \"*/.*\" && cd .. && rm -rf build",
+    "build": "cp extension/src/pindata.js extension/src/pindata.main.js"
+  },
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "playwright-core": "^1.56.1"
+  },
+  "private": true
+}

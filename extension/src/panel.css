@@ -1,0 +1,27 @@
+:host { all: initial; }
+.root { position: fixed; right: 20px; bottom: 20px; z-index: 2147483000; font: 14px/1.4 system-ui, -apple-system, sans-serif; color: #111; }
+button { font: inherit; cursor: pointer; }
+.pill { display: flex; align-items: center; gap: 8px; border: 0; border-radius: 999px; padding: 10px 16px; background: #111; color: #fff; box-shadow: 0 4px 16px rgba(0,0,0,.25); }
+.pill .dot { width: 8px; height: 8px; border-radius: 50%; background: #e60023; }
+.pill .count { opacity: .7; }
+.card { width: 272px; background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,.22); padding: 14px 16px 16px; }
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.x { border: 0; background: #efefef; border-radius: 50%; width: 28px; height: 28px; }
+section { margin-top: 12px; }
+h4 { margin: 0 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: #767676; display: flex; justify-content: space-between; }
+.row { display: flex; align-items: center; gap: 8px; padding: 4px 0; cursor: pointer; }
+.row input { accent-color: #e60023; width: 16px; height: 16px; }
+.row .n { margin-left: auto; color: #767676; font-size: 12px; }
+.swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+.sw { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(0,0,0,.15); background: var(--c); }
+.sw.on { outline: 3px solid #111; outline-offset: 2px; }
+.chips { display: flex; gap: 6px; }
+.chip { flex: 1; border: 1px solid #ddd; background: #fff; border-radius: 10px; padding: 6px 4px; font-size: 12px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.chip.on { background: #111; color: #fff; border-color: #111; }
+.shape { display: block; border: 2px solid currentColor; border-radius: 2px; }
+.shape.portrait { width: 10px; height: 15px; } .shape.square { width: 13px; height: 13px; } .shape.landscape { width: 16px; height: 10px; }
+.link { border: 0; background: none; color: #e60023; padding: 0; font-size: 12px; text-transform: none; letter-spacing: 0; }
+.folder { display: flex; gap: 8px; align-items: center; }
+select { flex: 1; font: inherit; padding: 6px 8px; border-radius: 8px; border: 1px solid #ddd; background: #fff; }
+.primary { margin-top: 10px; width: 100%; border: 0; border-radius: 999px; padding: 10px; background: #e60023; color: #fff; font-weight: 600; }
+.notice { margin-top: 12px; width: 100%; border: 0; border-radius: 10px; padding: 8px; background: #fff4d6; color: #6b4e00; }

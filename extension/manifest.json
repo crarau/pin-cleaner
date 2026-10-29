@@ -1,0 +1,109 @@
+{
+  "manifest_version": 3,
+  "name": "Pin Cleaner",
+  "version": "1.0.0",
+  "description": "Hide ads, video and AI images on Pinterest, filter by color and shape, pick images into folders and export them in full resolution.",
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "action": {
+    "default_title": "Pin Cleaner library",
+    "default_icon": {
+      "16": "icons/16.png",
+      "48": "icons/48.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "permissions": [
+    "storage",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://i.pinimg.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.pinterest.com/*",
+        "https://*.pinterest.ca/*",
+        "https://*.pinterest.co.uk/*",
+        "https://*.pinterest.fr/*",
+        "https://*.pinterest.de/*",
+        "https://*.pinterest.es/*",
+        "https://*.pinterest.it/*",
+        "https://*.pinterest.com.au/*",
+        "https://*.pinterest.com.mx/*",
+        "https://*.pinterest.ch/*",
+        "https://*.pinterest.at/*",
+        "https://*.pinterest.ie/*",
+        "https://*.pinterest.nz/*",
+        "https://*.pinterest.pt/*",
+        "https://*.pinterest.se/*",
+        "https://*.pinterest.jp/*"
+      ],
+      "js": [
+        "src/pindata.main.js",
+        "src/inject.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://*.pinterest.com/*",
+        "https://*.pinterest.ca/*",
+        "https://*.pinterest.co.uk/*",
+        "https://*.pinterest.fr/*",
+        "https://*.pinterest.de/*",
+        "https://*.pinterest.es/*",
+        "https://*.pinterest.it/*",
+        "https://*.pinterest.com.au/*",
+        "https://*.pinterest.com.mx/*",
+        "https://*.pinterest.ch/*",
+        "https://*.pinterest.at/*",
+        "https://*.pinterest.ie/*",
+        "https://*.pinterest.nz/*",
+        "https://*.pinterest.pt/*",
+        "https://*.pinterest.se/*",
+        "https://*.pinterest.jp/*"
+      ],
+      "js": [
+        "src/pindata.js",
+        "src/content.js"
+      ],
+      "css": [
+        "src/content.css"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "src/panel.css"
+      ],
+      "matches": [
+        "https://*.pinterest.com/*",
+        "https://*.pinterest.ca/*",
+        "https://*.pinterest.co.uk/*",
+        "https://*.pinterest.fr/*",
+        "https://*.pinterest.de/*",
+        "https://*.pinterest.es/*",
+        "https://*.pinterest.it/*",
+        "https://*.pinterest.com.au/*",
+        "https://*.pinterest.com.mx/*",
+        "https://*.pinterest.ch/*",
+        "https://*.pinterest.at/*",
+        "https://*.pinterest.ie/*",
+        "https://*.pinterest.nz/*",
+        "https://*.pinterest.pt/*",
+        "https://*.pinterest.se/*",
+        "https://*.pinterest.jp/*"
+      ]
+    }
+  ]
+}

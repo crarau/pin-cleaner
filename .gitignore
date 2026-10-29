@@ -1,0 +1,6 @@
+.profile/
+node_modules/
+shots/
+.chrome.pid
+pin-cleaner.zip
+build/
