@@ -1,0 +1,11 @@
+import { chromium } from 'playwright-core';
+const browser = await chromium.connectOverCDP('http://127.0.0.1:9333');
+const page = browser.contexts()[0].pages().find(p => p.url().includes('webstore/devconsole'));
+await page.getByRole('textbox', { name: /Homepage URL/ }).fill('https://github.com/crarau/pin-cleaner');
+await page.getByRole('textbox', { name: /Support URL/ }).fill('https://github.com/crarau/pin-cleaner/issues');
+await page.locator('button').filter({ hasText: /^Save draft$/ }).click();
+await page.waitForTimeout(4000);
+const t = (await page.evaluate(() => document.body.innerText)).replace(/\n+/g, ' | ');
+console.log(t.slice(0, 300));
+console.log((t.match(/(saved|error|required)[^|]{0,120}/gi) || []).slice(0, 8));
+await browser.close();

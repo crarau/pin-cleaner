@@ -4,3 +4,6 @@ shots/
 .chrome.pid
 pin-cleaner.zip
 build/
+pin-cleaner-store.zip
+store/*.png
+store/*.jpg

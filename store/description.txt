@@ -1,0 +1,22 @@
+Pin Cleaner gives you a calmer, more useful Pinterest.
+
+HIDE WHAT YOU DON'T WANT
+• Ads: hidden by default, everywhere on Pinterest, including search results and the "more like this" grid under a pin.
+• AI-generated images: one click hides every pin Pinterest itself labels as AI modified.
+• Video: one click hides video pins.
+
+Hidden pins are removed before Pinterest lays out the page, so the grid stays packed with no empty holes.
+
+FILTER BY COLOR AND SHAPE
+Pick one or more of 12 colors and any of portrait, square or landscape. Only matching pins are shown, on any Pinterest page.
+
+PICK, ORGANIZE, EXPORT
+• Hover any pin and press + to pick it. Picked pins stay visible even when your filters would hide them.
+• File picks into your own folders.
+• Open the library to move, rename and review your picks.
+• Download in full resolution: the original image, not the thumbnail. Save each one as a JPG or a whole folder as a ZIP.
+
+PRIVATE BY DESIGN
+Nothing is collected or sent anywhere. Your settings, picks and folders stay in your browser. No accounts, no tracking, no analytics.
+
+Pin Cleaner is an independent tool and is not affiliated with or endorsed by Pinterest.

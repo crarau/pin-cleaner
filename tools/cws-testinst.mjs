@@ -1,0 +1,16 @@
+import { chromium } from 'playwright-core';
+const text = 'Sign in to pinterest.com with any free Pinterest account. A black Pin Cleaner button appears bottom right; ads are hidden by default. Open it, tick Video and AI-generated, choose a color and a shape, then refresh: only matching pins remain. Hover a pin and press + to pick it. Open library, then Download ZIP to export picks in full resolution. Search "ai art" to see the AI filter work.';
+console.log(text.length);
+const browser = await chromium.connectOverCDP('http://127.0.0.1:9333');
+const page = browser.contexts()[0].pages().find(p => p.url().includes('webstore/devconsole'));
+await page.getByRole('textbox', { name: /Additional instructions/ }).fill(text);
+await page.locator('button').filter({ hasText: /^Save changes$/ }).click();
+await page.waitForTimeout(3000);
+console.log((await page.evaluate(() => document.body.innerText)).match(/(saved|error)[^\n]{0,80}/gi));
+await page.goto('https://chrome.google.com/u/1/webstore/devconsole/71392977-7748-4840-b554-8859b1923563/pjnldnkophmedfilcbpoeniioiccomah/edit', { waitUntil: 'domcontentloaded' });
+await page.waitForTimeout(3500);
+await page.locator('button, [role=button], a').filter({ hasText: /Why can.t I submit/ }).first().click();
+await page.waitForTimeout(2000);
+console.log('WHY:', (await page.evaluate(() => document.querySelector('[role=dialog]')?.innerText || 'no dialog')).replace(/\n+/g, ' | '));
+await page.keyboard.press('Escape');
+await browser.close();

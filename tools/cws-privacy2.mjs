@@ -1,0 +1,15 @@
+import { chromium } from 'playwright-core';
+const browser = await chromium.connectOverCDP('http://127.0.0.1:9333');
+const page = browser.contexts()[0].pages().find(p => p.url().includes('webstore/devconsole'));
+const radios = page.locator('input[type=radio]');
+await radios.nth(0).check({ force: true });
+const checks = page.locator('input[type=checkbox]');
+const n = await checks.count();
+for (let i = n - 3; i < n; i++) await checks.nth(i).check({ force: true });
+await page.getByRole('textbox').last().fill('https://github.com/crarau/pin-cleaner/blob/main/docs/privacy.md');
+await page.locator('button').filter({ hasText: /^Save draft$/ }).click();
+await page.waitForTimeout(4000);
+const state = await page.evaluate(() => [...document.querySelectorAll('input[type=radio], input[type=checkbox]')].map(i => { let x = i; for (let k = 0; k < 5; k++) x = x.parentElement; return (i.checked ? 'X ' : '. ') + x.innerText.trim().slice(0, 50).replace(/\n/g, ' '); }));
+console.log(state.join('\n'));
+console.log((await page.evaluate(() => document.body.innerText)).match(/(saved|error)[^\n]{0,100}/gi));
+await browser.close();

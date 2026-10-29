@@ -1,0 +1,11 @@
+import { chromium } from 'playwright-core';
+const browser = await chromium.connectOverCDP('http://127.0.0.1:9333');
+const page = browser.contexts()[0].pages().find(p => p.url().includes('webstore/devconsole'));
+const name = page.getByLabel('Publisher display name*');
+console.log('current name:', await name.inputValue());
+await name.fill('IdeaPlaces');
+await page.getByRole('button', { name: 'Add email' }).click();
+await page.waitForTimeout(1500);
+await page.screenshot({ path: 'shots/cws-email.png' });
+console.log((await page.evaluate(() => document.querySelector('[role=dialog]')?.innerText || 'no dialog')).replace(/\n+/g, ' | '));
+await browser.close();
