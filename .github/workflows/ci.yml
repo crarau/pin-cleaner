@@ -1,0 +1,29 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm test
+      - name: Manifest is valid JSON and every referenced file exists
+        run: |
+          node -e '
+            const fs = require("fs"); const m = JSON.parse(fs.readFileSync("extension/manifest.json"));
+            const files = [m.background.service_worker, ...Object.values(m.icons), ...m.content_scripts.flatMap(c => [...c.js, ...(c.css || [])]), ...m.web_accessible_resources.flatMap(w => w.resources)];
+            const missing = files.filter(f => !fs.existsSync("extension/" + f));
+            if (missing.length) { console.error("missing:", missing); process.exit(1); }
+            console.log("manifest ok,", files.length, "files");'
+      - name: Package
+        run: npm run package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pin-cleaner
+          path: pin-cleaner.zip
